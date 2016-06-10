@@ -5,6 +5,8 @@ CURRENT_DIR="$(pwd)"
 LAYOUT_DIR="$SCRIPT_DIR/../_layout"
 DOWNLOAD_DIR="$SCRIPT_DIR/../_downloads"
 
+cd $SCRIPT_DIR
+
 BUILD_CONFIG="Debug"
 if [[ "$DEV_SUBCMD" == "Release" ]]; then
     BUILD_CONFIG="Release"
