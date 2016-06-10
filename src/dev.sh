@@ -1,7 +1,9 @@
 DEV_CMD=$1
 DEV_SUBCMD=$2
-LAYOUT_DIR=`pwd`/../_layout
-DOWNLOAD_DIR=`pwd`/../_downloads
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CURRENT_DIR="$(pwd)"
+LAYOUT_DIR="$SCRIPT_DIR/../_layout"
+DOWNLOAD_DIR="$SCRIPT_DIR/../_downloads"
 
 BUILD_CONFIG="Debug"
 if [[ "$DEV_SUBCMD" == "Release" ]]; then
@@ -32,6 +34,7 @@ function failed()
 {
    local error=${1:-Undefined error}
    echo "Failed: $error" >&2
+   cd $CURRENT_DIR
    exit 1
 }
 
@@ -328,6 +331,7 @@ case $DEV_CMD in
    *) echo "Invalid cmd.  Use build, restore, clean, test, or layout";;
 esac
 
+cd $CURRENT_DIR
 echo
 echo Done.
 echo
